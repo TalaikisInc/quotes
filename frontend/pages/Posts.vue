@@ -59,7 +59,9 @@ export default {
     }
   },
   asyncData ({ req, params, error }) {
-    return axios.get('/posts/' + (Number(params.page) || Math.floor((Math.random() * 18820))) + '/')
+    // reoved page randomization to saver resources
+    // Math.floor((Math.random() * 18820))
+    return axios.get('/posts/' + (Number(params.page) || '0') + '/')
       .then((response) => {
         return { posts: response.data, page: Number(params.page) || 0 }
       })

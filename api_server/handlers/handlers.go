@@ -3,7 +3,6 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -25,7 +24,6 @@ func PostsHandler(w http.ResponseWriter, r *http.Request) {
 	page := url.QueryEscape(strings.Split(r.RequestURI, "/")[2])
 	p, err := strconv.Atoi(page)
 	if err != nil {
-		log.Fatal(err)
 		return
 	}
 
@@ -49,7 +47,6 @@ func PostsHandler(w http.ResponseWriter, r *http.Request) {
 
 		rows, err := db.Query(query)
 		if err != nil {
-			log.Fatal(err)
 			return
 		}
 		defer rows.Close()
@@ -60,19 +57,16 @@ func PostsHandler(w http.ResponseWriter, r *http.Request) {
 			err := rows.Scan(&post.Content, &post.Image, &post.CategoryID.Title,
 				&post.CategoryID.Slug, &post.TotalPosts)
 			if err != nil {
-				log.Fatal(err)
 				return
 			}
 			posts = append(posts, post)
 		}
 		if err = rows.Err(); err != nil {
-			log.Fatal(err)
 			return
 		}
 
 		j, err := json.Marshal(posts)
 		if err != nil {
-			log.Fatal(err)
 			return
 		}
 
@@ -177,8 +171,6 @@ func CategoriesHandler(w http.ResponseWriter, r *http.Request) {
 
 		rows, err := db.Query(query)
 		if err != nil {
-			log.Fatal(err)
-			log.Fatal(err)
 			return
 		}
 		defer rows.Close()

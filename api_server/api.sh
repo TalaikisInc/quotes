@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT=bsnssnws
+PROJECT=quotes
 
 cd /home/$PROJECT/api_server
 
