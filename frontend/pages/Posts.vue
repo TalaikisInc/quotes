@@ -3,8 +3,8 @@
     <ad-component></ad-component>
     <Row v-for="(chunk, index) in chunkPosts" :key="'p-' + index" class="posts-row">
       <Col :span="2"></Col>
-      <Col :span="8" v-for="(post, i) in chunk" :key="index + i" class="posts-col">
-        <Card :bordered="false">
+      <Col :span="8" :xs="10" v-for="(post, i) in chunk" :key="index + i" class="posts-col">
+        <Card :bordered="false" class="columns">
           <div v-if="post.image">
             <a :href="baseUrl + post.slug + '/'"><img :src="imgBaseUrl + post.image" :alt="post.title" class="img-fluid"></a>
           </div>
